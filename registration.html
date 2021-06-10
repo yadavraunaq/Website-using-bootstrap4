@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Event Registration - Fill Form </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+ 
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<div class="container-fluid">
+	<a class="navbar-brand" href="#"><img src="img/logo.png" style="width:200px;height:100px;"></a>
+ 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+    	<span class="navbar-toggler-icon"></span>
+  	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+	 <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="registration.html">Registration</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="show.html">Show Details</a>
+          </li>
+         </ul>
+	</div>  	
+</div>
+</nav>
+
+<!--- Image Slider -->
+<div id="slides" class="carousel slide" data-ride="carousel">
+<ul class="carousel-indicators">
+  <li data-target="#slides" data-slide-to="0" class="active"></li>
+  <li data-target="#slides" data-slide-to="1"></li>
+  <li data-target="#slides" data-slide-to="2"></li>
+</ul>
+<div class="carousel-inner">
+  <div class="carousel-item active">
+    <img src="img/Studycover.jpg">
+    <div class="carousel-caption">
+      <h1 class="display-2" style="color: royalblue">WELCOME</h1>
+      <h3 style="color: royalblue">Event Registration Portal </h3>
+      <button type="button" class="btn btn-outline-dark btn-lg" onclick="document.location='registration.html'"> REGISTER </button>
+      <button type="button" class="btn btn-primary btn-lg" onclick="document.location='show.html'">SEE DETAILS</button>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="img/team1.png">
+    <div class="carousel-caption">
+      <h1 class="display-2" style="color: darkblue">REGISTER</h1>
+      <h3 style="color: darkblue">Register for the event here</h3>
+      <button type="button" class="btn btn-outline-dark btn-lg" onclick="document.location='registration.html'"> REGISTER </button>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img src="img/team2.png">
+    <div class="carousel-caption">
+      <h1 class="display-2" style="color: darkgreen">SHOW DETAILS</h1>
+      <h3 style="color: green">See details of event here</h3>
+      <button type="button" class="btn btn-primary btn-lg" onclick="document.location='show.html'">SEE DETAILS</button>
+    </div>
+  </div>
+</div>
+</div>
+<!--- Jumbotron -->
+<form  class="was-validated" name="studform" onsubmit="return myFunction()" >
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter fullname" name="name" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="number" class="form-control" id="age" placeholder="Enter age" name="age" max="26" min="17" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Age should be between 17-26</div>
+  </div>
+  <div class="form-check-inline">
+      <label class="form-check-label" for="male">
+        <input type="radio" class="form-check-input" id="male" name="optradio" value="Male" checked required>Male
+      </label>
+    </div>
+    <div class="form-check-inline">
+      <label class="form-check-label" for="female">
+        <input type="radio" class="form-check-input" id="female" name="optradio" value="Female" required>Female
+      </label>
+    </div>
+  <div class="form-group">
+    <label for="Stream">Stream:</label>
+      <input type="text" class="form-control" id="Stream" placeholder="Enter your Stream" name="Stream" pattern="CS|CIVIL|MECH|BIOTECH" required>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Please choose from CS, CIVIL OR BIOTECH. Input is case sensitive.</div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary" >Submit</button>
+</form>
+<p id="demo"></p>
+ <script> 
+  var x=0;
+  var curtime;
+  var myJSON;
+  var name1=Array();
+  var age1=Array();
+  var gender1=Array();
+  var stream1=Array();
+  var date1=Array(); 
+  var studentdata = {
+    name:[],
+    age:[],
+    gender:[],
+    stream:[],
+    date:[]
+  };
+   function myFunction() {
+    
+    name1[x] = document.forms["studform"]["name"].value;
+    age1[x] = document.forms["studform"]["age"].value;
+    gender1[x] = document.forms["studform"]["optradio"].value;
+    stream1[x] = document.forms["studform"]["Stream"].value;
+    curtime = new Date();
+    date1[x] = curtime.getTime();
+    studentdata.name.push(name1[x]);
+    studentdata.age.push(age1[x]);
+    studentdata.gender.push(gender1[x]);
+    studentdata.stream.push(stream1[x]);
+    studentdata.date.push(date1[x]);
+    alert("Success, see the details on show details tab or make another entry");
+    x++;
+    document.forms["studform"]["name"].value="";
+    document.forms["studform"]["age"].value="";
+    document.forms["studform"]["Stream"].value="";
+    myJSON = JSON.stringify(studentdata);
+    //document.getElementById("demo").innerHTML = myJSON;
+    sessionStorage.setItem("testJSON", myJSON);
+    console.log(sessionStorage.getItem("testJSON"));
+    //document.getElementById("demo").innerHTML = x;
+    //document.getElementById("").innerHTML = x;
+    return false;
+};
+
+
+  </script>
+
+<!--- Footer -->
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h3>Thank you for visiting</h3>
+</div>
+
+
+
+
+</body>
+</html>
